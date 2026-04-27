@@ -2,11 +2,11 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-   const [items, setItems] = useState([]);
+   const [items, setItems] = useState<string[]>(['Apples', 'Milk', 'Oreos', 'Orange Juice']);
    const [inputValue, setInputValue] = useState('');
    const [filter, setFilter] = useState('');
 
-   function addItem(e) {
+   function addItem(e: React.FormEvent) {
   e.preventDefault();
 
   if (inputValue === '') {
@@ -17,7 +17,7 @@ function App() {
   setItems([...items, inputValue]);
   setInputValue('');
 }
-  function removeItem(indexToRemove) {
+  function removeItem(indexToRemove: number) {
   setItems(items.filter((_, index) => index !== indexToRemove));
 }
   function clearItems() {
@@ -39,7 +39,7 @@ function App() {
             className="form-input"
             placeholder="Enter Item"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
           />
         </div>
         <div className="form-control">
@@ -53,7 +53,7 @@ function App() {
           className="form-input-filter"
           placeholder="Filter Items"
           value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFilter(e.target.value)}
         />
       </div>
 
